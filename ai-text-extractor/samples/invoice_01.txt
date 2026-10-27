@@ -1,0 +1,21 @@
+SAMPLE SUPPLIES LTD (fictional company - demo data)
+12 Example Street, Sampletown
+
+INVOICE
+
+Invoice No: INV-2026-0147
+Invoice Date: 2026-09-03
+Due Date: 2026-10-03
+
+Bill To: Demo Bakery Co.
+
+Description                      Qty    Unit Price     Amount
+Paper cups 12oz (box of 500)       4        38.00      152.00
+Kraft bags medium (pack 250)       2        24.50       49.00
+Napkins 2-ply (case)               3        19.00       57.00
+
+Subtotal:                                             258.00
+VAT 20%:                                               51.60
+TOTAL DUE (GBP):                                      309.60
+
+Payment by bank transfer within 30 days.

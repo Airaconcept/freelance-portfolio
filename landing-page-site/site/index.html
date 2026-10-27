@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledgerly - Invoice tracking for small teams (demo template)</title>
+  <meta name="description" content="Ledgerly is a demo landing page template: send invoices, track payments and chase late clients from one simple dashboard.">
+  <meta property="og:title" content="Ledgerly - Invoice tracking for small teams">
+  <meta property="og:description" content="Send invoices, see who has paid, and get reminded about late payments.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Ledgerly home">
+        <img src="favicon.svg" alt="" width="28" height="28"> Ledgerly
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="nav-menu" class="nav-menu" aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-small" href="#contact">Request a demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Demo template &middot; fictional product</p>
+          <h1>Get paid on time, <span class="accent">without the spreadsheet.</span></h1>
+          <p class="lead">Ledgerly keeps every invoice, payment and reminder in one place, so a small team always knows who owes what - and nobody has to chase clients by hand.</p>
+          <div class="hero-cta">
+            <a class="btn" href="#contact">Request a demo</a>
+            <a class="btn btn-ghost" href="#how">See how it works</a>
+          </div>
+          <ul class="hero-points">
+            <li>Free 14-day trial</li>
+            <li>No card required</li>
+            <li>Cancel anytime</li>
+          </ul>
+        </div>
+
+        <div class="mock" aria-label="Illustration of the Ledgerly dashboard" role="img">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-stats">
+              <div><small>Outstanding</small><strong>$12,480</strong></div>
+              <div><small>Paid this month</small><strong>$31,920</strong></div>
+              <div><small>Overdue</small><strong class="warn">3</strong></div>
+            </div>
+            <div class="mock-chart" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i>
+            </div>
+            <ul class="mock-list">
+              <li><span>INV-1042 &middot; Sample Client A</span><em class="paid">Paid</em></li>
+              <li><span>INV-1043 &middot; Sample Client B</span><em class="due">Due in 3 days</em></li>
+              <li><span>INV-1044 &middot; Sample Client C</span><em class="late">Overdue</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Everything you need, nothing you don't</h2>
+        <p class="section-lead">Built for teams of 1-20 who send invoices every week.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+            <h3>Invoices in a minute</h3>
+            <p>Reusable line items, your logo and payment details, PDF and link sharing.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div>
+            <h3>See who has paid</h3>
+            <p>Every invoice shows its status at a glance: sent, viewed, paid or overdue.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+            <h3>Automatic reminders</h3>
+            <p>Polite reminders go out before and after the due date - you choose the schedule.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+            <h3>Cash-flow overview</h3>
+            <p>Monthly totals, average days to pay and an export for your accountant.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section section-alt">
+      <div class="container">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li><strong>Add your clients</strong><span>Import a CSV or type them in.</span></li>
+          <li><strong>Send the invoice</strong><span>By link or PDF, with a pay button.</span></li>
+          <li><strong>Relax</strong><span>Ledgerly tracks payment and sends reminders.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2>Simple pricing</h2>
+        <p class="section-lead">Example prices for the template - change them in <code>index.html</code>.</p>
+        <div class="pricing">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="price">$0<span>/month</span></p>
+            <ul><li>Up to 5 invoices/month</li><li>1 user</li><li>Email reminders</li></ul>
+            <a class="btn btn-ghost" href="#contact">Start free</a>
+          </article>
+          <article class="plan plan-featured">
+            <p class="badge">Most popular</p>
+            <h3>Team</h3>
+            <p class="price">$19<span>/month</span></p>
+            <ul><li>Unlimited invoices</li><li>Up to 5 users</li><li>Custom reminder schedule</li><li>CSV export</li></ul>
+            <a class="btn" href="#contact">Request a demo</a>
+          </article>
+          <article class="plan">
+            <h3>Business</h3>
+            <p class="price">$49<span>/month</span></p>
+            <ul><li>Everything in Team</li><li>Up to 20 users</li><li>Roles and approvals</li></ul>
+            <a class="btn btn-ghost" href="#contact">Talk to us</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section section-alt">
+      <div class="container narrow">
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>Is this a real product?</summary>
+          <p>No. Ledgerly is a fictional product used to demonstrate a landing page template. All names, numbers and prices are placeholders.</p>
+        </details>
+        <details>
+          <summary>Does the contact form send anything?</summary>
+          <p>Not in this demo. The form validates the fields in the browser and shows a confirmation. The README explains how to connect it to a form service or your own endpoint.</p>
+        </details>
+        <details>
+          <summary>Which browsers are supported?</summary>
+          <p>All current versions of Chrome, Edge, Firefox and Safari, on desktop and mobile. The page uses no frameworks and loads no external scripts or fonts.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container narrow">
+        <h2>Request a demo</h2>
+        <p class="section-lead">Leave your details and we will get back to you.</p>
+        <form id="contact-form" class="form" action="#" method="post" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe">
+            <p class="error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@example.com">
+            <p class="error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="team">Team size</label>
+            <select id="team" name="team">
+              <option>Just me</option><option>2-5</option><option>6-20</option><option>20+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message <span class="optional">(optional)</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="What would you like to see?"></textarea>
+          </div>
+          <button class="btn" type="submit">Send request</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>&copy; <span id="year">2026</span> Ledgerly (demo template). Fictional product.</p>
+      <p><a href="#top">Back to top &uarr;</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

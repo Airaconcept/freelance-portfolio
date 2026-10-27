@@ -1,0 +1,15 @@
+{
+  "doc_type": "email",
+  "fields": {
+    "sender_name": "Alex Sample",
+    "company": "Example Events GmbH",
+    "subject": "Order request - 300 branded mugs before Nov 20",
+    "intent": "order",
+    "items_mentioned": "300 ceramic mugs, 300 gift boxes",
+    "reference": null,
+    "deadline": "2026-11-20",
+    "urgency": "normal",
+    "summary": null
+  },
+  "line_items": []
+}

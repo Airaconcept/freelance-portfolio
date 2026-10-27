@@ -1,0 +1,13 @@
+From: Placeholder Print Studio  (fictional - example data only)
+
+Bill #: PPS-0932
+Date of issue: 15 Sep 2026          Payment due: 29 Sep 2026
+Customer: Example Events GmbH
+
+- 2 x A1 poster print @ EUR 45.00 = EUR 90.00
+- 500 x Flyer A5, double-sided @ EUR 0.12 = EUR 60.00
+- 1 x Design adjustment (1 h) @ EUR 55.00 = EUR 55.00
+
+Net amount: EUR 205.00
+Tax (19%): EUR 38.95
+Amount payable: EUR 243.95

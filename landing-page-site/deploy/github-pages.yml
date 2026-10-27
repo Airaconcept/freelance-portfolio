@@ -1,0 +1,38 @@
+# GitHub Pages deployment with GitHub Actions.
+# Copy this file to .github/workflows/pages.yml in the repository root, then
+# Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+# SITE_DIR is the folder that contains index.html.
+name: Deploy landing page to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["landing-page-site/site/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  SITE_DIR: landing-page-site/site
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE_DIR }}
+      - id: deployment
+        uses: actions/deploy-pages@v4

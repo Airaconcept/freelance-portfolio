@@ -1,0 +1,12 @@
+Subject: Damaged delivery, order 77812
+From: Jordan Demo
+Company: Demo Bakery Co.
+
+Hello,
+
+the delivery for order 77812 arrived today and 2 of the 4 boxes of paper cups were crushed and wet.
+This is the second time this month. Please send replacements as soon as possible and let me know
+how you will make sure this does not happen again.
+
+Regards,
+Jordan

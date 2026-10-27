@@ -1,0 +1,15 @@
+{
+  "doc_type": "email",
+  "fields": {
+    "sender_name": "Jordan Demo",
+    "company": "Demo Bakery Co.",
+    "subject": "Damaged delivery, order 77812",
+    "intent": "complaint",
+    "items_mentioned": "4 boxes of paper cups",
+    "reference": "77812",
+    "deadline": null,
+    "urgency": "high",
+    "summary": null
+  },
+  "line_items": []
+}

@@ -1,0 +1,167 @@
+[
+  {
+    "doc_type": "email",
+    "fields": {
+      "sender_name": "Alex Sample",
+      "company": "Example Events GmbH",
+      "subject": "Order request - 300 branded mugs before Nov 20",
+      "intent": "order",
+      "items_mentioned": "300 ceramic mugs, 300 gift boxes",
+      "reference": null,
+      "deadline": "2026-11-20",
+      "urgency": "normal",
+      "summary": null
+    },
+    "line_items": [],
+    "file": "email_01.txt",
+    "problems": [],
+    "backend": "rules"
+  },
+  {
+    "doc_type": "email",
+    "fields": {
+      "sender_name": "Jordan Demo",
+      "company": "Demo Bakery Co.",
+      "subject": "Damaged delivery, order 77812",
+      "intent": "complaint",
+      "items_mentioned": "4 boxes of paper cups",
+      "reference": "77812",
+      "deadline": null,
+      "urgency": "high",
+      "summary": null
+    },
+    "line_items": [],
+    "file": "email_02.txt",
+    "problems": [],
+    "backend": "rules"
+  },
+  {
+    "doc_type": "email",
+    "fields": {
+      "sender_name": "Sam Placeholder",
+      "company": "Sample Cafe LLC",
+      "subject": "Question about bulk pricing",
+      "intent": "quote_request",
+      "items_mentioned": "50+ grinder burr sets",
+      "reference": null,
+      "deadline": null,
+      "urgency": "low",
+      "summary": null
+    },
+    "line_items": [],
+    "file": "email_03.txt",
+    "problems": [],
+    "backend": "rules"
+  },
+  {
+    "doc_type": "invoice",
+    "fields": {
+      "vendor": "Sample Supplies Ltd",
+      "customer": "Demo Bakery Co.",
+      "invoice_number": "INV-2026-0147",
+      "invoice_date": "2026-09-03",
+      "due_date": "2026-10-03",
+      "currency": "GBP",
+      "subtotal": 258.0,
+      "tax": 51.6,
+      "total": 309.6
+    },
+    "line_items": [
+      {
+        "description": "Paper cups 12oz (box of 500)",
+        "quantity": 4.0,
+        "unit_price": 38.0,
+        "amount": 152.0
+      },
+      {
+        "description": "Kraft bags medium (pack 250)",
+        "quantity": 2.0,
+        "unit_price": 24.5,
+        "amount": 49.0
+      },
+      {
+        "description": "Napkins 2-ply (case)",
+        "quantity": 3.0,
+        "unit_price": 19.0,
+        "amount": 57.0
+      }
+    ],
+    "file": "invoice_01.txt",
+    "problems": [],
+    "backend": "rules"
+  },
+  {
+    "doc_type": "invoice",
+    "fields": {
+      "vendor": "Placeholder Print Studio",
+      "customer": "Example Events GmbH",
+      "invoice_number": "PPS-0932",
+      "invoice_date": "2026-09-15",
+      "due_date": "2026-09-29",
+      "currency": "EUR",
+      "subtotal": 205.0,
+      "tax": 38.95,
+      "total": 243.95
+    },
+    "line_items": [
+      {
+        "description": "A1 poster print",
+        "quantity": 2.0,
+        "unit_price": 45.0,
+        "amount": 90.0
+      },
+      {
+        "description": "Flyer A5, double-sided",
+        "quantity": 500.0,
+        "unit_price": 0.12,
+        "amount": 60.0
+      },
+      {
+        "description": "Design adjustment (1 h)",
+        "quantity": 1.0,
+        "unit_price": 55.0,
+        "amount": 55.0
+      }
+    ],
+    "file": "invoice_02.txt",
+    "problems": [],
+    "backend": "rules"
+  },
+  {
+    "doc_type": "invoice",
+    "fields": {
+      "vendor": "Testco Hardware Inc.",
+      "customer": "Sample Cafe LLC",
+      "invoice_number": "T-55810",
+      "invoice_date": "2026-09-22",
+      "due_date": "2026-10-07",
+      "currency": "USD",
+      "subtotal": 263.94,
+      "tax": 21.78,
+      "total": 285.72
+    },
+    "line_items": [
+      {
+        "description": "Espresso machine descaler",
+        "quantity": 6.0,
+        "unit_price": 12.99,
+        "amount": 77.94
+      },
+      {
+        "description": "Stainless milk jug 600ml",
+        "quantity": 2.0,
+        "unit_price": 18.5,
+        "amount": 37.0
+      },
+      {
+        "description": "Grinder burr set",
+        "quantity": 1.0,
+        "unit_price": 149.0,
+        "amount": 149.0
+      }
+    ],
+    "file": "invoice_03.txt",
+    "problems": [],
+    "backend": "rules"
+  }
+]

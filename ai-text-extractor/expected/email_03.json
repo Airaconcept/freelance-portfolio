@@ -1,0 +1,15 @@
+{
+  "doc_type": "email",
+  "fields": {
+    "sender_name": "Sam Placeholder",
+    "company": "Sample Cafe LLC",
+    "subject": "Question about bulk pricing",
+    "intent": "quote_request",
+    "items_mentioned": "50+ grinder burr sets",
+    "reference": null,
+    "deadline": null,
+    "urgency": "low",
+    "summary": null
+  },
+  "line_items": []
+}

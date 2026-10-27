@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fixture</title></head>
+<body>
+<div id="list"></div>
+<nav><ul class="pager"></ul></nav>
+<script>
+  // Like the real site: items are NOT in the HTML, they are rendered by JavaScript after a short delay.
+  const PAGES = {
+    1: [{text: '\u201cFirst quote, with a comma.\u201d', author: 'Ada  Lovelace', tags: ['math', 'code']},
+        {text: '\u201cHe said "hi".\u201d', author: 'Alan Turing', tags: []}],
+    2: [{text: '\u201cLast   page quote.\u201d', author: 'Grace Hopper', tags: ['navy']},
+        {text: '\u201cFirst quote, with a comma.\u201d', author: 'Ada Lovelace', tags: ['math']}]
+  };
+  const n = Number((location.pathname.match(/page\/(\d+)/) || [0, 1])[1]);
+  setTimeout(() => {
+    document.getElementById('list').innerHTML = (PAGES[n] || []).map(q =>
+      `<div class="quote"><span class="text">${q.text}</span> by <small class="author">${q.author}</small>
+       <div class="tags">${q.tags.map(t => `<a class="tag">${t}</a>`).join('')}</div></div>`).join('');
+    if (PAGES[n + 1]) document.querySelector('.pager').innerHTML = `<li class="next"><a href="/page/${n + 1}/">Next</a></li>`;
+  }, 150);
+</script>
+</body></html>

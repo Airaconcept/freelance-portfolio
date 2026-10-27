@@ -1,0 +1,37 @@
+order_no;client;item;order_date;quantity;price_usd
+S-1001;Cedar & Co;Desk Lamp;19.03.2026;8;$24.90
+S-1002;blue river ltd;MONITOR STAND;25/06/2026;8;$39.50
+S-1003;ACME CORP;NOTEBOOK A5;12.05.2026;9;$4.75
+S-1004;Foxglove LLC;USB-C Hub ;01/06/2026;10;$32.00
+S-1005;Granite Works;Notebook A5 ;26.04.2026;3;$4.75
+S-1006;  Blue River Ltd ;Desk Lamp;01/02/2026;7;$24.90
+S-1007;Cedar & Co;Office Chair;29.01.2026;9;$149.00
+S-1008;GRANITE WORKS;USB-C HUB;06/02/2026;;$32.00
+S-1009;Cedar & Co ;Notebook A5 ;15.03.2026;7;$4.75
+S-1010;Acme Corp;Desk Lamp ;17/01/2026;3;$24.90
+S-1011;EVERGREEN INC;Desk Lamp ;16.02.2026;5;$24.90
+S-1012;  Blue River Ltd ;DESK LAMP;18/05/2026;10;$24.90
+S-1013;  Acme Corp ;Wireless Mouse ;20.06.2026;2;$19.99
+S-1014;foxglove llc;Notebook A5;02/05/2026;6;$4.75
+S-1015;HARBOR SUPPLIES;  Notebook A5 ;24.06.2026;3;$4.75
+S-1016;foxglove llc;office chair;25/01/2026;1;$149.00
+S-1017;FOXGLOVE LLC;NOTEBOOK A5;14.03.2026;12;$4.75
+S-1018;blue river ltd;Office Chair;26/06/2026;9;$149.00
+S-1019;Evergreen Inc;  Wireless Mouse ;03.02.2026;8;$19.99
+S-1020;Granite Works;wireless mouse;07/04/2026;1;$19.99
+S-1021;blue river ltd;USB-C Hub ;21.04.2026;6;$32.00
+S-1022;blue river ltd;Office Chair;19/06/2026;11;$149.00
+S-1023;  Evergreen Inc ;Wireless Mouse ;13.02.2026;2;$19.99
+S-1024;Granite Works;  Wireless Mouse ;22/05/2026;8;$19.99
+S-1025;Cedar & Co;Notebook A5 ;14.01.2026;1;$4.75
+S-1026;cedar & co;Desk Lamp ;05/02/2026;12;$24.90
+S-1027;blue river ltd;Desk Lamp ;01.04.2026;12;$24.90
+S-1028;EVERGREEN INC;Notebook A5;12/05/2026;12;$4.75
+S-1029;Granite Works;USB-C HUB;02.04.2026;2;$32.00
+S-1030;blue river ltd;Wireless Mouse;13/01/2026;12;$19.99
+S-1031;GRANITE WORKS;Office Chair;26.06.2026;4;$149.00
+S-1032;  Granite Works ;wireless mouse;01/06/2026;5;$19.99
+S-1033;  Granite Works ;notebook a5;04.06.2026;6;$4.75
+S-1034;ACME CORP;usb-c hub;03/04/2026;3;$32.00
+S-1035;delta studio;NOTEBOOK A5;19.02.2026;12;$4.75
+
