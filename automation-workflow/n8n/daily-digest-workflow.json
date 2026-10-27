@@ -1,0 +1,325 @@
+{
+  "name": "Daily Digest - RSS + Web Page Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "name": "Every Day 08:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "id": "ea028a5e-2931-5948-96b2-0c28c32c4319"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Edit this list: one entry per RSS feed (mirrors config.yaml in the Python version)\nreturn [\n  { json: { source: 'Hacker News Front Page', url: 'https://hnrss.org/frontpage' } },\n  { json: { source: 'Python Insider', url: 'https://blog.python.org/feeds/posts/default?alt=rss' } },\n  { json: { source: 'GitHub Blog', url: 'https://github.blog/feed/' } },\n];"
+      },
+      "name": "Feed List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        80
+      ],
+      "id": "82bfb776-17d6-54ec-ac19-9679a83d8007"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "name": "Read RSS",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        440,
+        80
+      ],
+      "id": "cb164d11-d3b6-550b-8635-f1d5bcabeed1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tag every feed entry with the feed it came from and keep at most 15 per source\nconst MAX_PER_SOURCE = 15;\nconst counts = {};\nconst out = [];\n$input.all().forEach((item, i) => {\n  let source;\n  try { source = $('Feed List').itemMatching(i).json.source; }\n  catch (e) { source = (item.json.link || '').split('/')[2] || 'RSS'; }\n  counts[source] = (counts[source] || 0) + 1;\n  if (counts[source] > MAX_PER_SOURCE) return;\n  const link = item.json.link || '';\n  out.push({ json: {\n    source,\n    title: String(item.json.title || '(no title)').replace(/\\s+/g, ' ').trim(),\n    link,\n    published: item.json.isoDate || item.json.pubDate || '',\n    uid: item.json.guid || link || item.json.title,\n  }});\n});\nreturn out;"
+      },
+      "name": "Normalize Feed Items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        80
+      ],
+      "id": "0375eeb4-839f-5bf3-b970-f3d958b7afa4",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "url": "https://quotes.toscrape.com/",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      },
+      "name": "Fetch Web Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        320
+      ],
+      "id": "60432468-4ec5-5b30-b0a2-f36b645aad49",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "data",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "quotes",
+              "cssSelector": ".quote .text",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extract Watched Elements",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        320
+      ],
+      "id": "403074ea-2cc0-5a1e-bbfc-e0a7d7864a25"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turn the extracted text blocks into items; the uid is the text itself, so any change shows up as new\nconst PAGE_URL = 'https://quotes.toscrape.com/';\nconst texts = $input.first().json.quotes || [];\nreturn texts\n  .map(t => String(t).replace(/\\s+/g, ' ').trim())\n  .filter(Boolean)\n  .map(t => ({ json: { source: 'Quotes page (change monitor demo)', title: t.slice(0, 200), link: PAGE_URL, published: '', uid: PAGE_URL + '|' + t } }));"
+      },
+      "name": "Normalize Page Items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        320
+      ],
+      "id": "a3274f2d-0977-5c97-9872-326387ef531a",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "name": "Merge Sources",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        880,
+        200
+      ],
+      "id": "f81d3b93-36aa-56d1-9e8d-307e6f4a0e03"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Keep only items not reported before (remembered in workflow static data),\n// optionally filter by keywords, and build one Markdown digest.\n// Note: static data persists only for production runs (active workflow), not manual test runs.\nconst KEYWORDS = [];               // e.g. ['python', 'ai'] - empty = keep everything\nconst TITLE = 'Daily Tech Digest';\n\nconst store = $getWorkflowStaticData('global');\nstore.seen = store.seen || {};\n\nconst all = $input.all().map(i => i.json).filter(i => i.uid);  // drop empty/error items\nconst fresh = all.filter(it =>\n  !store.seen[it.uid] &&\n  (KEYWORDS.length === 0 || KEYWORDS.some(k => it.title.toLowerCase().includes(k.toLowerCase())))\n);\nfor (const it of all) store.seen[it.uid] = Date.now();\n// forget entries older than 60 days so static data stays small\nconst cutoff = Date.now() - 60 * 24 * 3600 * 1000;\nfor (const [k, t] of Object.entries(store.seen)) if (t < cutoff) delete store.seen[k];\n\nconst today = new Date().toISOString().slice(0, 10);\nconst sources = [...new Set(all.map(i => i.source))];\nlet md = `# ${TITLE} - ${today}\\n\\n**${fresh.length} new item(s)** from ${sources.length} source(s).\\n`;\nfor (const s of sources) {\n  const group = fresh.filter(i => i.source === s);\n  const checked = all.filter(i => i.source === s).length;\n  md += `\\n## ${s} (${group.length} new / ${checked} checked)\\n\\n`;\n  md += group.length ? group.map(i => `- [${i.title}](${i.link})`).join('\\n') + '\\n' : '_No new items._\\n';\n}\nreturn [{ json: { title: TITLE, date: today, count: fresh.length, items: fresh, markdown: md } }];"
+      },
+      "name": "New Items + Markdown Digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        200
+      ],
+      "id": "fd05d097-31b0-5f4e-ade7-132e87f2b768"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "b14f8d7e-7779-5c4d-9d9b-d315e8306b10",
+              "leftValue": "={{ $json.count }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Anything New?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        200
+      ],
+      "id": "ca595f17-64ac-553a-8ef3-82fa0ed82701"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/REPLACE/WITH/YOURS",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: $json.markdown.slice(0, 3500) }) }}",
+        "options": {}
+      },
+      "name": "Send to Webhook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        200
+      ],
+      "id": "fb0405fb-2107-51c0-a34a-88ad3aee3705"
+    }
+  ],
+  "connections": {
+    "Every Day 08:00": {
+      "main": [
+        [
+          {
+            "node": "Feed List",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Web Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Feed List": {
+      "main": [
+        [
+          {
+            "node": "Read RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read RSS": {
+      "main": [
+        [
+          {
+            "node": "Normalize Feed Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Feed Items": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Web Page": {
+      "main": [
+        [
+          {
+            "node": "Extract Watched Elements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Watched Elements": {
+      "main": [
+        [
+          {
+            "node": "Normalize Page Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Page Items": {
+      "main": [
+        [
+          {
+            "node": "Merge Sources",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Sources": {
+      "main": [
+        [
+          {
+            "node": "New Items + Markdown Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New Items + Markdown Digest": {
+      "main": [
+        [
+          {
+            "node": "Anything New?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anything New?": {
+      "main": [
+        [
+          {
+            "node": "Send to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}
