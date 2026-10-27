@@ -1,0 +1,37 @@
+# Daily digest configuration. Edit this file - no code changes needed.
+
+report:
+  title: "Daily Tech Digest"
+  output_dir: reports          # Markdown + Excel reports are written here
+  state_file: state/seen.json  # remembers what was already reported
+  max_items_per_source: 15
+  first_run_report_all: true   # false = first run only records a baseline
+
+# Optional: only keep items whose title contains one of these words (case-insensitive).
+# Leave empty to keep everything.
+keywords: []
+
+sources:
+  - name: Hacker News Front Page
+    type: rss
+    url: https://hnrss.org/frontpage
+
+  - name: Python Insider
+    type: rss
+    url: https://blog.python.org/feeds/posts/default?alt=rss
+
+  - name: GitHub Blog
+    type: rss
+    url: https://github.blog/feed/
+
+  # Any web page without a feed: watch a CSS selector and report new entries.
+  - name: Quotes page (change monitor demo)
+    type: web
+    url: https://quotes.toscrape.com/
+    selector: ".quote .text"
+
+webhook:
+  enabled: false
+  # Slack / Discord / generic JSON. The URL can also come from the env var DIGEST_WEBHOOK_URL.
+  format: slack                # slack | discord | generic
+  url: ""
